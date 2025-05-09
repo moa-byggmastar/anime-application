@@ -26,7 +26,7 @@ export default function LoginPage() {
             })
 
             if (res.ok) {
-                router.replace('/')
+                router.push('/')
             } else {
                 const data = await res.json()
                 setError(data.message || 'Something went wrong')

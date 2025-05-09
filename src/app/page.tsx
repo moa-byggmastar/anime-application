@@ -27,7 +27,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.replace('/login')
+      router.push('/login')
     }
   }, [loading, user])
 
@@ -132,32 +132,31 @@ export default function HomePage() {
     }
   }
 
-  if (loading) return <p className="text-white">Loading...</p>
+  if (loading) return <p>Loading...</p>
 
 
   return (
-    <main className="min-h-screen bg-[#10052D] text-white p-6">
-      <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-6">Anime Watch/Recommendation List</h1>
+    <main>
+      <h1>Anime Watch/Recommendation List</h1>
 
-      {error && <p className="text-red-400 mb-2">{error}</p>}
+      {error && <p>{error}</p>}
 
-      <div className="flex gap-4 mb-6">
+      <div>
         <button onClick={() => setShowForm(!showForm)}>
           {showForm ? 'Close form' : 'Add new anime'}
         </button>
 
-        <button onClick={handleLogout} className="bg-pink-600 text-white px-4 py-1 rounded hover:bg-pink-700">Log out</button>
+        <button onClick={handleLogout}>Log out</button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleAddAnime} className="space-y-2 mb-6 max-w-md">
+        <form onSubmit={handleAddAnime}>
           <input
             type="text"
             placeholder="Title"
             value={title}
             onChange={e => setTitle(e.target.value)}
             required
-            className="w-full p-2 rounded bg-black text-white placejolder-gray-400"
           />
           <input
             type="text"
@@ -165,40 +164,38 @@ export default function HomePage() {
             value={imageUrl}
             onChange={e => setImageUrl(e.target.value)}
             required
-            className="w-full p-2 rounded bg-black text-white placejolder-gray-400"
           />
           <textarea
             placeholder="Description"
             value={description}
             onChange={e => setDescription(e.target.value)}
-            className="w-full p-2 rounded bg-black text-white placejolder-gray-400"
           />
-          <button type="submit" className="bg-pink-600 px-4 py-2 rounded text-white hover:bg-pink-700">Save</button>
+          <button type="submit">Save</button>
         </form>
       )}
 
-      <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <section>
         {animes.length === 0 ? (
           <p>No anime found.</p>
         ) : (
           animes.map(anime => (
-            <div key={anime.id} className="bg-[#1A103D] p-2 rounded-lg text-center" >
-              <img src={anime.image_url} alt={anime.title} className="w-full h-40 object-cover rounded" />
-              <h2 className="text-lg font-bold mt-2">{anime.title}</h2>
-              <p className="text-sm mb-2">{anime.description}</p>
-              <div className="flex justify-center gap-2">
-                <button onClick={() => handleDelete(anime.id)} className="bg-pink-600 text-white px-2 py-1 rounded text-sm hover:bg-pink-700">Delete</button>
-                <button onClick={() => startEdit(anime)} className="bg-pink-600 text-white px-2 py-1 rounded text-sm hover:bg-pink-700">Edit</button>
+            <div key={anime.id} >
+              <img src={anime.image_url} alt={anime.title} />
+              <h2>{anime.title}</h2>
+              <p>{anime.description}</p>
+              <div>
+                <button onClick={() => handleDelete(anime.id)} >Delete</button>
+                <button onClick={() => startEdit(anime)}>Edit</button>
               </div>
 
               {editModeId === anime.id && (
                 <form onSubmit={handleUpdateAnime}>
-                  <input type="text" placeholder='Title' value={editTitle} onChange={e => setEditTitle(e.target.value)} required className="w-full p-1 rounded bg-black text-white placeholder-gray-400" />
-                  <input type="text" placeholder='Image URL' value={editImageUrl} onChange={e => setEditImageurl(e.target.value)} required className="w-full p-1 rounded bg-black text-white placeholder-gray-400" />
-                  <textarea placeholder='Desription' value={editDescription} onChange={e => setEditDescription(e.target.value)} className="w-full p-1 rounded bg-black text-white placeholder-gray-400" />
-                  <div className="flex gap-2 justify-center">
-                    <button type='submit' className="bg-pink-600 px-3 py-1 text-sm rounded hover:bg-pink-700">Update</button>
-                    <button type='button' onClick={() => setEditModeId(null)} className="bg-gray-600 px-3 py-1 text-sm rounded hover:bg-gray-700">Cancel</button>
+                  <input type="text" placeholder='Title' value={editTitle} onChange={e => setEditTitle(e.target.value)} required />
+                  <input type="text" placeholder='Image URL' value={editImageUrl} onChange={e => setEditImageurl(e.target.value)} required />
+                  <textarea placeholder='Desription' value={editDescription} onChange={e => setEditDescription(e.target.value)} />
+                  <div>
+                    <button type='submit' >Update</button>
+                    <button type='button' onClick={() => setEditModeId(null)}>Cancel</button>
                   </div>
                 </form>
               )}

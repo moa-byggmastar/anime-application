@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import { db } from '@/lib/db'
+import { signToken } from '@/lib/auth'
 
 //POST: Logga in användare
 export async function POST(request: Request) {
@@ -20,7 +21,9 @@ export async function POST(request: Request) {
 
     const response = NextResponse.json({ message: 'Login successful', userId: user.id }, { status: 200 })
 
-    response.cookies.set('token', String(user.id), {
+    const token = signToken(user)
+
+    response.cookies.set('token', token, {
         httpOnly: true,
         path: '/',
         maxAge: 7 * 24 * 60 * 60 //7 days
