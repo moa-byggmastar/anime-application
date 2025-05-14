@@ -1,1 +1,175 @@
 @import "tailwindcss";
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #130930;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    width: 100vw;
+}
+
+.title {
+    color: #be5ea9;
+    text-shadow: 1px 1px #000;
+}
+
+.buttons .btn {
+    margin-left: 10px;
+    background-color: #be5ea9;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.buttons .btn:hover {
+    background-color: #d38fc4;
+}
+
+.logout {
+    background-color: #7e6be6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+}
+
+.card {
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 330px;
+}
+
+.info {
+    margin-bottom: 10px;
+}
+
+.actions .btn {
+    padding: 3px 7px;
+    font-size: 0.85rem;
+    background-color: #be5ea9;
+    margin: 2px;
+    border-radius: 5px;
+    width: 5rem;
+}
+
+.delete:hover {
+    background-color: #e64b5a;
+}
+
+.edit:hover {
+    background-color: #d38fc4;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-right: 2rem;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input::placeholder {
+    color: white;
+}
+
+textarea::placeholder {
+    color: white;
+}
+
+.save {
+    background-color: #be5ea9;
+    padding: 3px 15px;
+    border-radius: 5px;
+}
+
+.update {
+    background-color: #be5ea9;
+    padding: 2px 15px;
+    border-radius: 5px;
+    margin-right: 2px;
+}
+
+.cancel {
+    background-color: #be5ea9;
+    padding: 2px 15px;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+
+.loginHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+    width: 100vw;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.loginBtn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.4rem 3rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.loginInput {
+    background-color: black;
+    border: none;
+    width: 20vw;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.link {
+    color: #be5ea9;
+}

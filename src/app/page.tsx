@@ -136,18 +136,20 @@ export default function HomePage() {
 
 
   return (
-    <main>
-      <h1>Anime Watch/Recommendation List</h1>
+    <div className='container'>
+      <header className='header'>
+        <h1 className='title'>Anime Watch/Recommendation List</h1>
 
-      {error && <p>{error}</p>}
+        {error && <p>{error}</p>}
 
-      <div>
-        <button onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Close form' : 'Add new anime'}
-        </button>
+        <div className='buttons'>
+          <button onClick={() => setShowForm(!showForm)} className='btn add'>
+            {showForm ? 'Close form' : 'Add new anime'}
+          </button>
 
-        <button onClick={handleLogout}>Log out</button>
-      </div>
+          <button onClick={handleLogout} className='btn logout'>Log out</button>
+        </div>
+      </header>
 
       {showForm && (
         <form onSubmit={handleAddAnime}>
@@ -170,22 +172,24 @@ export default function HomePage() {
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
-          <button type="submit">Save</button>
+          <button className='btn save' type="submit">Save</button>
         </form>
       )}
 
-      <section>
+      <section className='grid'>
         {animes.length === 0 ? (
           <p>No anime found.</p>
         ) : (
           animes.map(anime => (
-            <div key={anime.id} >
-              <img src={anime.image_url} alt={anime.title} />
-              <h2>{anime.title}</h2>
-              <p>{anime.description}</p>
-              <div>
-                <button onClick={() => handleDelete(anime.id)} >Delete</button>
-                <button onClick={() => startEdit(anime)}>Edit</button>
+            <div key={anime.id} className='card' >
+              <img src={anime.image_url} alt={anime.title} className='image' />
+              <div className='info'>
+                <strong>{anime.title}</strong>
+                <p>{anime.description}</p>
+              </div>
+              <div className='actions'>
+                <button onClick={() => handleDelete(anime.id)} className='btn delete' >Delete</button>
+                <button onClick={() => startEdit(anime)} className='btn edit'>Edit</button>
               </div>
 
               {editModeId === anime.id && (
@@ -194,8 +198,8 @@ export default function HomePage() {
                   <input type="text" placeholder='Image URL' value={editImageUrl} onChange={e => setEditImageurl(e.target.value)} required />
                   <textarea placeholder='Desription' value={editDescription} onChange={e => setEditDescription(e.target.value)} />
                   <div>
-                    <button type='submit' >Update</button>
-                    <button type='button' onClick={() => setEditModeId(null)}>Cancel</button>
+                    <button className='update' type='submit' >Update</button>
+                    <button className='cancel' type='button' onClick={() => setEditModeId(null)}>Cancel</button>
                   </div>
                 </form>
               )}
@@ -203,6 +207,6 @@ export default function HomePage() {
           ))
         )}
       </section>
-    </main>
+    </div>
   )
 }

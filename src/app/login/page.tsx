@@ -39,15 +39,20 @@ export default function LoginPage() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <h1>{isRegister ? 'Register' : 'Login'}</h1>
-                {error && <p>{error}</p>}
-                {isRegister && (
-                    <input type="text" placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} required />
-                )}
-                <input type="email" placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} required />
-                <input type="password" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} required />
-                <button type='submit'>{isRegister ? 'Register' : 'Login'}</button>
-                <p onClick={() => setIsRegister(!isRegister)}>{isRegister ? 'Already have an account? Login' : 'No account? Register'}</p>
+                <header className='loginHeader'>
+                    <h1>{isRegister ? 'Register' : 'Login'}</h1>
+                    {error && <p>{error}</p>}
+                </header>
+                <div className='loginForm'>
+                    {isRegister && (
+                        <input className='loginInput' type="text" placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} required />
+                    )}
+                    <input className='loginInput' type="email" placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} required />
+                    <input className='loginInput' type="password" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} required />
+
+                    <button className='loginBtn' type='submit'>{isRegister ? 'Register' : 'Login'}</button>
+                    <p className='link' onClick={() => setIsRegister(!isRegister)}>{isRegister ? 'Already have an account? Login' : 'No account? Register'}</p>
+                </div>
             </form>
         </div>
     )
